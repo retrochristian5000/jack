@@ -1993,7 +1993,7 @@ LIB_EXPORT char* jack_get_uuid_for_client_name(jack_client_t* ext_client, const 
     JackGlobals::CheckContext("jack_get_uuid_for_client_name");
 
     JackClient* client = (JackClient*)ext_client;
-    jack_log("jack_get_uuid_for_client_name ext_client %x client %x ", ext_client, client);
+    jack_log("jack_get_uuid_for_client_name ext_client %p client %p ", (void*)ext_client, (void*)client);
     if (client == NULL) {
         jack_error("jack_get_uuid_for_client_name called with a NULL client");
         return NULL;
@@ -2007,7 +2007,7 @@ LIB_EXPORT char* jack_get_client_name_by_uuid(jack_client_t* ext_client, const c
     JackGlobals::CheckContext("jack_get_client_name_by_uuid");
 
     JackClient* client = (JackClient*)ext_client;
-    jack_log("jack_get_uuid_for_client_name ext_client %x client %x ", ext_client, client);
+    jack_log("jack_get_uuid_for_client_name ext_client %p client %p ", (void*)ext_client, (void*)client);
     if (client == NULL) {
         jack_error("jack_get_client_name_by_uuid called with a NULL client");
         return NULL;
@@ -2021,7 +2021,7 @@ LIB_EXPORT int jack_reserve_client_name(jack_client_t* ext_client, const char* c
     JackGlobals::CheckContext("jack_reserve_client_name");
 
     JackClient* client = (JackClient*)ext_client;
-    jack_log("jack_reserve_client_name ext_client %x client %x ", ext_client, client);
+    jack_log("jack_reserve_client_name ext_client %p client %p ", (void*)ext_client, (void*)client);
     if (client == NULL) {
         jack_error("jack_reserve_client_name called with a NULL client");
         return -1;
