@@ -2,6 +2,9 @@ name: irc
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
   notification:
     runs-on: ubuntu-latest
