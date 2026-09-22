@@ -975,7 +975,7 @@ namespace Jack
         jack_log("NetIntAudioBuffer fNumPackets = %d fSubPeriodBytesSize = %d, fLastSubPeriodBytesSize = %d", fNumPackets, fSubPeriodBytesSize, fLastSubPeriodBytesSize);
 
         fCycleDuration = float(fSubPeriodBytesSize / sizeof(sample_t)) / float(params->fSampleRate);
-        fCycleBytesSize = params->fMtu * fNumPackets;
+        fCycleBytesSize = static_cast<size_t>(params->fMtu) * fNumPackets;
 
         fLastSubCycle = -1;
     }
