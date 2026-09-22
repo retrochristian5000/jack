@@ -663,7 +663,7 @@ int JackOSSDriver::OpenInput()
         goto error;
     }
     if (cur_capture_channels != fCaptureChannels) {
-        jack_info("JackOSSDriver::OpenInput driver forced the number of capture channels %ld", fCaptureChannels);
+        jack_info("JackOSSDriver::OpenInput driver forced the number of capture channels %d", fCaptureChannels);
     }
 
     cur_sample_rate = fEngineControl->fSampleRate;
