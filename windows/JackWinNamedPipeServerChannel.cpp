@@ -132,9 +132,9 @@ void JackClientPipeThread::ClientKill()
     jack_log("JackClientPipeThread::ClientKill ref = %d", fRefNum);
 
     if (fRefNum == -1) {        // Correspond to an already removed client.
-        jack_log("Kill a closed client %x", this);
+        jack_log("Kill a closed client %p", (void*)this);
     } else if (fRefNum == 0) {  // Correspond to a still not opened client.
-        jack_log("Kill a not opened client %x", this);
+        jack_log("Kill a not opened client %p", (void*)this);
     } else {
         fServer->GetEngine()->ClientKill(fRefNum);
     }
