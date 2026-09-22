@@ -132,7 +132,7 @@ class TestStateUser : public JackAtomicState<TestState> {
 				bool res = state->ReadCopy(result);
 			    next_index = GetCurrentIndex();
                 if (!res) 
-                    printf("TestReadMethod fCount %ld cur %ld next %ld\n", fCount, cur_index, next_index);
+                    printf("TestReadMethod fCount %d cur %ld next %ld\n", fCount, cur_index, next_index);
         	}while (cur_index != next_index);
 			state->Check(result);
 		}
