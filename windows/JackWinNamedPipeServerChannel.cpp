@@ -68,7 +68,7 @@ int JackClientPipeThread::Open(JackServer* server)      // Open the Server/Clien
 
 void JackClientPipeThread::Close()                                      // Close the Server/Client connection
 {
-    jack_log("JackClientPipeThread::Close 0 %x %ld", this, fRefNum);
+    jack_log("JackClientPipeThread::Close 0 %p %ld", (void*)this, fRefNum);
 
     //fThread.Kill();
     fPipe->Close();
@@ -82,7 +82,7 @@ bool JackClientPipeThread::Execute()
 {
     try {
 
-        jack_log("JackClientPipeThread::Execute %x", this);
+        jack_log("JackClientPipeThread::Execute %p", (void*)this);
         JackRequest header;
         int res = header.Read(fPipe);
         bool ret = true;
