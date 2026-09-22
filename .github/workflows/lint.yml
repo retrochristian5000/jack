@@ -23,3 +23,5 @@ jobs:
           sudo apt-get install flake8 findutils
       - name: Lint with flake8
         run: find . -type f \( -iname wscript -or -iname jack_control \) -exec flake8 {} \;
+      - name: Reject Python syntax warnings
+        run: python3 tests/check_python_syntax_warnings.py
