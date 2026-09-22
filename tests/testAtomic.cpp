@@ -54,7 +54,7 @@ struct TestState {
 	
 	bool Read() 
 	{
-		int val = fTable[0];
+		long val = fTable[0];
 		fReadCounter++;
 		for (int i = 0; i < SIZE; i++) {
 			if (fTable[i] != val) {
