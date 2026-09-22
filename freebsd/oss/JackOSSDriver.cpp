@@ -1028,7 +1028,7 @@ int JackOSSDriver::Read()
         // Minus half a block or at most 1ms of frames, avoid drift issues at start.
         silence -= min(TimeToFrames(1000, fEngineControl->fSampleRate), (fOutMeanStep / 2));
         silence = max(silence - fOSSWriteOffset, 1LL);
-        jack_log("JackOSSDriver::Read start playback with %ld frames of silence", silence);
+        jack_log("JackOSSDriver::Read start playback with %u frames of silence", silence);
         fOSSWriteSync = GetMicroSeconds();
         WriteSilence(silence);
 
