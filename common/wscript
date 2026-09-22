@@ -48,6 +48,20 @@ def create_jack_process_obj(bld, target, sources, uselib=None, framework=None):
     return process
 
 
+def install_client_artifacts(bld, clientlib, serverlib_name):
+    bld.install_files('${PREFIX}/include/jack', bld.path.ant_glob('jack/*.h'))
+
+    bld(
+        features='subst_pc',
+        source='../jack.pc.in',
+        target='jack.pc',
+        install_path='${PKGCONFDIR}',
+        INCLUDEDIR=os.path.normpath(bld.env['PREFIX'] + '/include'),
+        CLIENTLIB=clientlib.target,
+        SERVERLIB=serverlib_name,
+    )
+
+
 def build(bld):
     common_libsources = [
         'JackActivationCount.cpp',
@@ -247,13 +261,18 @@ def build(bld):
         # we don't want to build other stuff in this variant
         return
 
+    serverlib_target = 'jackserver' + libsuffix
+    if bld.env['BUILD_CLIENT_ONLY']:
+        install_client_artifacts(bld, clientlib, serverlib_target)
+        return
+
     serverlib = bld(features=['c', 'cxx', 'cxxshlib', 'cshlib'])
     if bld.env['IS_MACOSX']:
         serverlib.framework = ['CoreAudio', 'CoreFoundation', 'Accelerate']
     serverlib.defines = ['HAVE_CONFIG_H', 'SERVER_SIDE']
     serverlib.includes = includes
     serverlib.name = 'serverlib'
-    serverlib.target = 'jackserver'+libsuffix
+    serverlib.target = serverlib_target
     serverlib.install_path = '${LIBDIR}'
     serverlib.use = uselib
     if bld.env['IS_WINDOWS']:
@@ -503,15 +522,4 @@ def build(bld):
         process = create_jack_process_obj(bld, 'audioadapter', audio_adapter_sources, serverlib)
         process.use += ['SAMPLERATE', 'PORTAUDIO']
 
-    bld.install_files('${PREFIX}/include/jack', bld.path.ant_glob('jack/*.h'))
-
-    # process jack.pc.in -> jack.pc
-    bld(
-        features='subst_pc',
-        source='../jack.pc.in',
-        target='jack.pc',
-        install_path='${PKGCONFDIR}',
-        INCLUDEDIR=os.path.normpath(bld.env['PREFIX'] + '/include'),
-        CLIENTLIB=clientlib.target,
-        SERVERLIB=serverlib.target,
-    )
+    install_client_artifacts(bld, clientlib, serverlib.target)

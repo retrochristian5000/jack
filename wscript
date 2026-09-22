@@ -87,6 +87,12 @@ def options(opt):
         dest='static',
         help='Build static binaries (Windows only)',
     )
+    opt.add_option(
+        '--client-only',
+        action='store_true',
+        default=False,
+        help='Build only the JACK client library and development files',
+    )
 
     # options affecting general jack functionality
     opt.add_option(
@@ -347,8 +353,11 @@ def configure(conf):
     conf.env['BUILD_CLASSIC'] = Options.options.classic
     conf.env['BUILD_DEBUG'] = Options.options.debug
     conf.env['BUILD_STATIC'] = Options.options.static
+    conf.env['BUILD_CLIENT_ONLY'] = Options.options.client_only
 
-    if conf.env['BUILD_JACKDBUS']:
+    if conf.env['BUILD_CLIENT_ONLY']:
+        conf.env['BUILD_JACKD'] = False
+    elif conf.env['BUILD_JACKDBUS']:
         conf.env['BUILD_JACKD'] = conf.env['BUILD_CLASSIC']
     else:
         conf.env['BUILD_JACKD'] = True
@@ -491,6 +500,7 @@ def configure(conf):
     display_feature(conf, 'Build with engine profiling', conf.env['BUILD_WITH_PROFILE'])
     display_feature(conf, 'Build with 32/64 bits mixed mode', conf.env['BUILD_WITH_32_64'])
 
+    display_feature(conf, 'Build JACK client library only', conf.env['BUILD_CLIENT_ONLY'])
     display_feature(conf, 'Build standard JACK (jackd)', conf.env['BUILD_JACKD'])
     display_feature(conf, 'Build D-Bus JACK (jackdbus)', conf.env['BUILD_JACKDBUS'])
     conf.msg('Autostart method', conf.env['AUTOSTART_METHOD'])
@@ -822,6 +832,9 @@ def build(bld):
 
     if bld.variant:
         # only the wscript in common/ knows how to handle variants
+        return
+
+    if bld.env['BUILD_CLIENT_ONLY']:
         return
 
     bld.recurse('compat')
