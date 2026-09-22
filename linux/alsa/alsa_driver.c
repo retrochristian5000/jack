@@ -548,7 +548,7 @@ alsa_driver_configure_stream (alsa_driver_t *driver, char *device_name,
 
 	if ((err = snd_pcm_hw_params_set_channels (handle, hw_params,
 						   *nchns)) < 0) {
-		jack_error ("ALSA: cannot set channel count to %u for %s",
+		jack_error ("ALSA: cannot set channel count to %ld for %s",
 			    *nchns, stream_name);
 		return -1;
 	}
