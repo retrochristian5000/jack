@@ -440,7 +440,7 @@ namespace Jack
     #endif
         int res;
         if ((res = recvfrom(fSockfd, buffer, nbytes, flags, reinterpret_cast<socket_address_t*>(&fRecvAddr), &addr_len)) < 0) {
-            jack_error("RecvFrom fd = %ld err = %s", fSockfd, strerror(errno));
+            jack_error("RecvFrom fd = %d err = %s", fSockfd, strerror(errno));
         }
         return res;        
     }
