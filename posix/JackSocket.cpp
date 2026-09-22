@@ -116,7 +116,7 @@ void JackClientSocket::SetNonBlocking(bool onoff)
     if (onoff) {
         long flags = 0;
         if (fcntl(fSocket, F_SETFL, flags | O_NONBLOCK) < 0) {
-            jack_error("SetNonBlocking fd = %ld err = %s", fSocket, strerror(errno));
+            jack_error("SetNonBlocking fd = %d err = %s", fSocket, strerror(errno));
         }
     }
 }
