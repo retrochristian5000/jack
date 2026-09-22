@@ -202,7 +202,7 @@ void JackTransportEngine::CycleEnd(JackClientInterface** table, jack_nframes_t f
                 SyncTimeout(frame_rate, buffer_size);
             } else if (--fSyncTimeLeft == 0 || CheckAllRolling(table)) {  // Slow clients may still catch up
                 if (fNetworkSync) {
-                    jack_log("transport starting ==> netstarting frame = %d");
+                    jack_log("transport starting ==> netstarting frame = %d", ReadCurrentState()->frame);
                     fTransportState = JackTransportNetStarting;
                 } else {
                     jack_log("transport starting ==> rolling fSyncTimeLeft = %ld", fSyncTimeLeft);
