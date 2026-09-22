@@ -213,7 +213,7 @@ int JackPortAudioDriver::Open(jack_nframes_t buffer_size,
         inchannels = in_max;
     }
     if (outchannels == 0) {
-        jack_log("JackPortAudioDriver::Open setup max out channels = %ld", out_max);
+        jack_log("JackPortAudioDriver::Open setup max out channels = %d", out_max);
         outchannels = out_max;
     }
 
