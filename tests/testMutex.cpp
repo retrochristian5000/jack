@@ -92,7 +92,7 @@ struct LockedObject : public JackLockAble {
         fCount++;
         //printf("LockedMethod1 self %x fCount %d\n", pthread_self(), fCount);
         if (fCount >= 1000) {
-            printf("Terminate self = %px  count = %d\n", pthread_self(), fCount);
+            printf("Terminate self = %lu  count = %d\n", (unsigned long)pthread_self(), fCount);
             pthread_exit(NULL);
         }
         Unlock();
@@ -107,7 +107,7 @@ struct LockedObject : public JackLockAble {
         fCount++;
         //printf("LockedMethod2 self %x fCount %d\n", pthread_self(), fCount);
         if (fCount >= 1500) {
-            printf("Terminate self = %px  count = %d\n", pthread_self(), fCount);
+            printf("Terminate self = %lu  count = %d\n", (unsigned long)pthread_self(), fCount);
             pthread_exit(NULL);
         }
         Unlock();
@@ -122,7 +122,7 @@ struct LockedObject : public JackLockAble {
         fCount++;
         //printf("LockedMethod3 self %x fCount %d\n", pthread_self(), fCount);
         if (fCount >= 3000) {
-            printf("Terminate self = %px  count = %d\n", pthread_self(), fCount);
+            printf("Terminate self = %lu  count = %d\n", (unsigned long)pthread_self(), fCount);
             pthread_exit(NULL);
         }
         Unlock();
