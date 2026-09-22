@@ -167,7 +167,7 @@ void Jack_Thread_Init_Callback(void *arg)
 #ifdef WIN32
     Log("Init callback has been successfully called from thread = %x. (msg from callback)\n", GetCurrentThread());
 #else
-    Log("Init callback has been successfully called from thread = %x. (msg from callback)\n", pthread_self());
+    Log("Init callback has been successfully called from thread = %lx. (msg from callback)\n", (unsigned long)pthread_self());
 #endif
     init_clbk = 1;
 }
