@@ -226,8 +226,8 @@ jack_controller_dbus_get_parameter_address_ex(
                 call,
                 JACK_DBUS_ERROR_INVALID_ARGS,
                 "Invalid arguments to method '%s'. Parameter address array must contain not more than %u elements.",
-                (unsigned int)PARAM_ADDRESS_SIZE,
-                call->method_name);
+                call->method_name,
+                (unsigned int)PARAM_ADDRESS_SIZE);
             return false;
         }
 
