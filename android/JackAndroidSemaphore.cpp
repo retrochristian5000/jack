@@ -166,7 +166,7 @@ bool JackAndroidSemaphore::Allocate(const char* name, const char* server_name, i
 {
     pthread_mutex_lock (&mutex);
     BuildName(name, server_name, fName, sizeof(fName));
-    jack_log("JackAndroidSemaphore::Allocate name = %s val = %ld", fName, value);
+    jack_log("JackAndroidSemaphore::Allocate name = %s val = %d", fName, value);
 
 	android::sp<android::IAndroidShm> service = android::Shm::getShmService();
 	if(service == NULL){
