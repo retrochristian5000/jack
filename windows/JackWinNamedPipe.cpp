@@ -238,7 +238,7 @@ int JackWinAsyncNamedPipeClient::FinishIO()
 int JackWinAsyncNamedPipeClient::Read(void* data, int len)
 {
     DWORD read;
-    jack_log("JackWinNamedPipeClient::Read len = %ld", len);
+    jack_log("JackWinNamedPipeClient::Read len = %d", len);
     BOOL res = ReadFile(fNamedPipe, data, len, &read, &fOverlap);
 
     if (res && read != 0) {
@@ -257,7 +257,7 @@ int JackWinAsyncNamedPipeClient::Read(void* data, int len)
 int JackWinAsyncNamedPipeClient::Write(void* data, int len)
 {
     DWORD written;
-    jack_log("JackWinNamedPipeClient::Write len = %ld", len);
+    jack_log("JackWinNamedPipeClient::Write len = %d", len);
     BOOL res = WriteFile(fNamedPipe, data, len, &written, &fOverlap);
 
     if (res && written != 0) {
