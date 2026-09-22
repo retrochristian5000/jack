@@ -425,7 +425,7 @@ namespace Jack
     #endif
         int res;
         if ((res = send(fSockfd, buffer, nbytes, flags)) < 0) {
-            jack_error("Send fd = %ld err = %s", fSockfd, strerror(errno));
+            jack_error("Send fd = %d err = %s", fSockfd, strerror(errno));
         }
         return res;
     }
@@ -454,7 +454,7 @@ namespace Jack
     #endif
         int res;
         if ((res = recv(fSockfd, buffer, nbytes, flags)) < 0) {
-            jack_error("Recv fd = %ld err = %s", fSockfd, strerror(errno));
+            jack_error("Recv fd = %d err = %s", fSockfd, strerror(errno));
         }
         return res;        
     }
@@ -469,7 +469,7 @@ namespace Jack
     #endif
         int res;
         if ((res = recvfrom(fSockfd, buffer, nbytes, flags, reinterpret_cast<socket_address_t*>(&fSendAddr), &addr_len)) < 0) {
-            jack_log("CatchHost fd = %ld err = %s", fSockfd, strerror(errno));
+            jack_log("CatchHost fd = %d err = %s", fSockfd, strerror(errno));
         }
         return res;                
     }
