@@ -7,6 +7,10 @@ on:
   pull_request:
     branches:
       - '*'
+
+permissions:
+  contents: read
+
 env:
   CACHE_VERSION: 6
   DEBIAN_FRONTEND: noninteractive
