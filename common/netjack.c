@@ -316,10 +316,10 @@ int netjack_wait( netjack_driver_state_t *netj )
 
 void netjack_send_silence( netjack_driver_state_t *netj, int syncstate )
 {
-    int tx_size = get_sample_size(netj->bitdepth) * netj->playback_channels * netj->net_period_up + sizeof(jacknet_packet_header);
+    size_t tx_size = (size_t)get_sample_size(netj->bitdepth) * netj->playback_channels * netj->net_period_up + sizeof(jacknet_packet_header);
     unsigned int *packet_buf, *packet_bufX;
 
-    packet_buf = alloca( tx_size);
+    packet_buf = alloca(tx_size);
     jacknet_packet_header *tx_pkthdr = (jacknet_packet_header *)packet_buf;
     jacknet_packet_header *rx_pkthdr = (jacknet_packet_header *)netj->rx_buf;
 
@@ -334,7 +334,7 @@ void netjack_send_silence( netjack_driver_state_t *netj, int syncstate )
     tx_pkthdr->framecnt = netj->expected_framecnt;
 
     // memset 0 the payload.
-    int payload_size = get_sample_size(netj->bitdepth) * netj->playback_channels * netj->net_period_up;
+    size_t payload_size = (size_t)get_sample_size(netj->bitdepth) * netj->playback_channels * netj->net_period_up;
     memset(packet_bufX, 0, payload_size);
 
     packet_header_hton(tx_pkthdr);
