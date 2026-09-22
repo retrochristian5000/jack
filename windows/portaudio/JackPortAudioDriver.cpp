@@ -174,7 +174,7 @@ int JackPortAudioDriver::Open(jack_nframes_t buffer_size,
     fCaptureLatency = capture_latency;
     fPlaybackLatency = playback_latency;
 
-    jack_log("JackPortAudioDriver::Open nframes = %ld in = %ld out = %ld capture name = %s playback name = %s samplerate = %ld",
+    jack_log("JackPortAudioDriver::Open nframes = %u in = %d out = %d capture name = %s playback name = %s samplerate = %u",
              buffer_size, inchannels, outchannels, capture_driver_uid, playback_driver_uid, samplerate);
 
     // Get devices
