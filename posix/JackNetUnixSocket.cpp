@@ -396,7 +396,7 @@ namespace Jack
     #endif
         int res;
         if ((res = sendto(fSockfd, buffer, nbytes, flags, reinterpret_cast<socket_address_t*>(&fSendAddr), sizeof(socket_address_t))) < 0) {
-            jack_error("SendTo fd = %ld err = %s", fSockfd, strerror(errno));
+            jack_error("SendTo fd = %d err = %s", fSockfd, strerror(errno));
         }
         return res;
     }
