@@ -464,7 +464,7 @@ int process3(jack_nframes_t nframes, void *arg)
 		Log("process3 callback : exiting...\n");
 		return -1;
 	} else {
-		Log("calling process3 callback : process3_call = %ld\n", process3_call);
+		Log("calling process3 callback : process3_call = %d\n", process3_call);
 		return 0;
 	}
 }
