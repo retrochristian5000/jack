@@ -209,7 +209,7 @@ int JackPortAudioDriver::Open(jack_nframes_t buffer_size,
 
     // Default channels number required
     if (inchannels == 0) {
-        jack_log("JackPortAudioDriver::Open setup max in channels = %ld", in_max);
+        jack_log("JackPortAudioDriver::Open setup max in channels = %d", in_max);
         inchannels = in_max;
     }
     if (outchannels == 0) {
