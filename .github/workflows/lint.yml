@@ -2,6 +2,9 @@
 
 name: Test wscript files
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [master, develop]
