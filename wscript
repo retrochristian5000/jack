@@ -267,23 +267,27 @@ def configure(conf):
     if not conf.env['IS_MACOSX']:
         conf.env.append_unique('LDFLAGS', '-Wl,--no-undefined')
     else:
-        conf.check(lib='aften', uselib='AFTEN', define_name='AFTEN')
-        conf.check_cxx(
-            fragment=''
-            + '#include <aften/aften.h>\n'
-            + 'int\n'
-            + 'main(void)\n'
-            + '{\n'
-            + 'AftenContext fAftenContext;\n'
-            + 'aften_set_defaults(&fAftenContext);\n'
-            + 'unsigned char *fb;\n'
-            + 'float *buf=new float[10];\n'
-            + 'int res = aften_encode_frame(&fAftenContext, fb, buf, 1);\n'
-            + '}\n',
-            lib='aften',
-            msg='Checking for aften_encode_frame()',
-            define_name='HAVE_AFTEN_NEW_API',
-            mandatory=False)
+        # Aften is used by the CoreAudio server driver's AC-3 encoder. A
+        # client-only build does not compile that driver, so do not require an
+        # otherwise-unused codec dependency just to build libjack.
+        if not Options.options.client_only:
+            conf.check(lib='aften', uselib='AFTEN', define_name='AFTEN')
+            conf.check_cxx(
+                fragment=''
+                + '#include <aften/aften.h>\n'
+                + 'int\n'
+                + 'main(void)\n'
+                + '{\n'
+                + 'AftenContext fAftenContext;\n'
+                + 'aften_set_defaults(&fAftenContext);\n'
+                + 'unsigned char *fb;\n'
+                + 'float *buf=new float[10];\n'
+                + 'int res = aften_encode_frame(&fAftenContext, fb, buf, 1);\n'
+                + '}\n',
+                lib='aften',
+                msg='Checking for aften_encode_frame()',
+                define_name='HAVE_AFTEN_NEW_API',
+                mandatory=False)
 
         # TODO
         conf.env.append_unique('CXXFLAGS', '-Wno-deprecated-register')
