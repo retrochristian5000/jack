@@ -116,7 +116,7 @@ bool JackClientPipeThread::Execute()
 
 void JackClientPipeThread::ClientAdd(detail::JackChannelTransactionInterface* socket, JackClientOpenRequest* req, JackClientOpenResult *res)
 {
-    jack_log("JackClientPipeThread::ClientAdd %x %s", this, req->fName);
+    jack_log("JackClientPipeThread::ClientAdd %p %s", (void*)this, req->fName);
     fRefNum = -1;
     res->fResult = fServer->GetEngine()->ClientExternalOpen(req->fName, req->fPID, req->fUUID, &fRefNum, &res->fSharedEngine, &res->fSharedClient, &res->fSharedGraph);
 }
