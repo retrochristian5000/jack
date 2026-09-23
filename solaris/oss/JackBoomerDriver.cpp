@@ -367,7 +367,7 @@ int JackBoomerDriver::OpenOutput()
         goto error;
     }
     if (cur_playback_channels != fPlaybackChannels) {
-        jack_info("JackBoomerDriver::OpenOutput driver forced the number of playback channels %ld", fPlaybackChannels);
+        jack_info("JackBoomerDriver::OpenOutput driver forced the number of playback channels %d", fPlaybackChannels);
     }
 
     cur_sample_rate = fEngineControl->fSampleRate;
