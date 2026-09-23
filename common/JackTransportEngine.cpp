@@ -77,7 +77,7 @@ int JackTransportEngine::SetTimebaseMaster(int refnum, bool conditionnal)
 {
     if (conditionnal && fTimeBaseMaster > 0) {
         if (refnum != fTimeBaseMaster) {
-            jack_log("conditional timebase for ref = %d failed: %ld is already the master", refnum, fTimeBaseMaster);
+            jack_log("conditional timebase for ref = %d failed: %d is already the master", refnum, fTimeBaseMaster);
             return EBUSY;
         } else {
             jack_log("ref = %d was already timebase master", refnum);
