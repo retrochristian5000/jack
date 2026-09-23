@@ -132,7 +132,7 @@ bool JackWinSemaphore::Disconnect()
 bool JackWinSemaphore::Allocate(const char* name, const char* server_name, int value)
 {
     BuildName(name, server_name, fName, sizeof(fName));
-    jack_log("JackWinSemaphore::Allocate name = %s val = %ld", fName, value);
+    jack_log("JackWinSemaphore::Allocate name = %s val = %d", fName, value);
 
     if ((fSemaphore = CreateSemaphore(NULL, value, 32767, fName)) == NULL) {
         jack_error("Allocate: can't check in named semaphore name = %s err = %ld", fName, GetLastError());
