@@ -84,7 +84,7 @@ struct TestState {
 		int val = result[0];
 		for (int i = 0; i < SIZE; i++) {
 			if (result[i] != val) {
-				printf("Check error fReadCounter %ld, i %ld, curVal %ld, oldVal %ld\n", fReadCounter, i, fTable[i], val);
+				printf("Check error fReadCounter %ld, i %d, curVal %ld, oldVal %ld\n", fReadCounter, i, fTable[i], val);
 				return false;
 			}
 		}
