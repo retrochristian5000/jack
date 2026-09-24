@@ -117,7 +117,7 @@ class JackShmReadWritePtr
         void Init(int index, const char* server_name = JACK_DEFAULT_SERVER_NAME)
         {
             if (fInfo.index < 0 && index >= 0) {
-                jack_log("JackShmReadWritePtr::Init %ld %d", index, fInfo.index);
+                jack_log("JackShmReadWritePtr::Init %d %d", index, fInfo.index);
                 if (jack_initialize_shm(server_name) < 0) {
                     throw std::bad_alloc();
                 }
