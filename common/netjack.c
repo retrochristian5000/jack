@@ -806,7 +806,7 @@ netjack_startup( netjack_driver_state_t *netj )
         netj->net_period_up = (float) netj->period_size / (float) netj->resample_factor_up;
     }
 
-    netj->rx_bufsize = sizeof (jacknet_packet_header) + netj->net_period_down * netj->capture_channels * get_sample_size (netj->bitdepth);
+    netj->rx_bufsize = sizeof (jacknet_packet_header) + (unsigned long) netj->net_period_down * netj->capture_channels * get_sample_size (netj->bitdepth);
     netj->packcache = packet_cache_new (netj->latency + 50, netj->rx_bufsize, netj->mtu);
 
     netj->expected_framecnt_valid = 0;
