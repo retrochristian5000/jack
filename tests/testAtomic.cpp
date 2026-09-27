@@ -81,7 +81,7 @@ struct TestState {
 	
 	bool Check(long* result) 
 	{
-		int val = result[0];
+		long val = result[0];
 		for (int i = 0; i < SIZE; i++) {
 			if (result[i] != val) {
 				printf("Check error fReadCounter %ld, i %d, curVal %ld, oldVal %ld\n", fReadCounter, i, fTable[i], val);
