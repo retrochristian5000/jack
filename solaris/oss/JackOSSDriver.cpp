@@ -295,7 +295,7 @@ int JackOSSDriver::OpenInput()
     if (fInputBufferSize != fEngineControl->fBufferSize * fSampleSize * fCaptureChannels) {
        if (fIgnoreHW) {
            int new_buffer_size = fInputBufferSize / (fSampleSize * fCaptureChannels);
-           jack_info("JackOSSDriver::OpenInput driver forced buffer size %ld", new_buffer_size);
+           jack_info("JackOSSDriver::OpenInput driver forced buffer size %d", new_buffer_size);
            JackAudioDriver::SetBufferSize(new_buffer_size); // never fails
        } else {
            jack_error("JackOSSDriver::OpenInput wanted buffer size cannot be obtained");
