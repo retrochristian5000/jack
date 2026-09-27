@@ -200,7 +200,7 @@ void JackSocketServerChannel::BuildPoolTable()
         int i;
 
         for (i = 1, it = fSocketTable.begin(); it != fSocketTable.end(); it++, i++) {
-            jack_log("JackSocketServerChannel::BuildPoolTable fSocketTable i = %ld fd = %ld", i, it->first);
+            jack_log("JackSocketServerChannel::BuildPoolTable fSocketTable i = %d fd = %ld", i, it->first);
             fPollTable[i].fd = it->first;
             fPollTable[i].events = POLLIN | POLLPRI | POLLERR | POLLHUP | POLLNVAL;
         }
