@@ -510,7 +510,7 @@ int process5(jack_nframes_t nframes, void *arg)
         return 0;
     }
 
-    Log("calling process5 callback : jack_get_cycle_times delta current_frames = %ld delta current_usecs = %ld delta next_usecs = %ld period_usecs = %f\n", 
+    Log("calling process5 callback : jack_get_cycle_times delta current_frames = %u delta current_usecs = %ld delta next_usecs = %ld period_usecs = %f\n", 
     current_frames - first_current_frames, current_usecs - first_current_usecs, next_usecs - first_next_usecs, period_usecs);
 
     first_current_frames = current_frames;
