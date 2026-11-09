@@ -58,7 +58,7 @@ struct TestState {
 		fReadCounter++;
 		for (int i = 0; i < SIZE; i++) {
 			if (fTable[i] != val) {
-				printf("Read error fReadCounter %ld, i %ld, curVal %ld, oldVal %ld\n", fReadCounter, i, fTable[i], val);
+				printf("Read error fReadCounter %ld, i %d, curVal %ld, oldVal %ld\n", fReadCounter, i, fTable[i], val);
 				return false;
 			}
 		}
