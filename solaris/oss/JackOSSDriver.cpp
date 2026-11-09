@@ -283,7 +283,7 @@ int JackOSSDriver::OpenInput()
         goto error;
     }
     if (cur_sample_rate != fEngineControl->fSampleRate) {
-        jack_info("JackOSSDriver::OpenInput driver forced the sample rate %ld", fEngineControl->fSampleRate);
+        jack_info("JackOSSDriver::OpenInput driver forced the sample rate %u", fEngineControl->fSampleRate);
     }
 
     fInputBufferSize = 0;
